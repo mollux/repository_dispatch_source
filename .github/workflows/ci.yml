@@ -1,14 +1,17 @@
 name: Trigger PR in PMS on release
-on: push
+on: 
+  push:
+    tags:
+      - *
 
 jobs:
   build:
     runs-on: ubuntu-latest
     name: Dispatch an update
     steps:
-      - uses: hmarr/debug-action@v2
       - uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.PAT }}
           repository: 'mollux/repository_dispatch_dest'
           event-type: update_event
+          client-payload: '{"ref": "${{ github.ref_name }}", "sha": "${{ github.workflow }}"}'
