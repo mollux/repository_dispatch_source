@@ -1,0 +1,12 @@
+name: Trigger PR in PMS on release
+on: push
+
+jobs:
+  build:
+    name: Dispatch an update
+    steps:
+      - uses: mvasigh/dispatch-action@main
+        with:
+          token: ${{ secrets.PAT }}
+          repo: mollux/repository_dispatch_dest
+          event_type: update_event
