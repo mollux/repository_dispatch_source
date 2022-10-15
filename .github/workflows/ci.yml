@@ -1,4 +1,4 @@
-name: Trigger PR in PMS on release
+name: CI pipeline
 on: 
   push:
     tags:
@@ -9,9 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Dispatch an update
     steps:
-      - uses: peter-evans/repository-dispatch@v2
+      - name: Dispatch tag event to the destination repo
+        uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.PAT }}
           repository: 'mollux/repository_dispatch_dest'
           event-type: update_event
-          client-payload: '{"ref": "${{ github.ref_name }}", "sha": "${{ github.workflow }}"}'
+          client-payload: '{"ref": "${{ github.ref_name }}"}'
