@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Dispatch an update
     steps:
-      - uses: mvasigh/dispatch-action@main
+      - uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.PAT }}
-          repo: mollux/repository_dispatch_dest
-          event_type: update_event
+          repository: 'mollux/repository_dispatch_dest'
+          event-type: update_event
