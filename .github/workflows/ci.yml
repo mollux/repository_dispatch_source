@@ -2,7 +2,7 @@ name: Trigger PR in PMS on release
 on: 
   push:
     tags:
-      - *
+      - '*'
 
 jobs:
   build:
