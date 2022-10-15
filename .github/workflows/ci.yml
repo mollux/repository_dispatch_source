@@ -6,6 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Dispatch an update
     steps:
+      - uses: hmarr/debug-action@v2
       - uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.PAT }}
